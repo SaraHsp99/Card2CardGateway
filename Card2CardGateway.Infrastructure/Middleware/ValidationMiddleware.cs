@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
-
+using System.Net;
+using Microsoft.Extensions.Logging;
 
 namespace Card2CardGateway.Infrastructure.Middleware
 {
@@ -23,40 +24,40 @@ namespace Card2CardGateway.Infrastructure.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (ValidationException ex)
-            {
-                _logger.LogWarning("Validation failed: {Errors}", ex.Errors);
+            //try
+            //{
+            //    await _next(context);
+            //}
+            //catch (ValidationException ex)
+            //{
+            //    _logger.LogWarning("Validation failed: {Errors}", ex.Errors);
 
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Response.ContentType = "application/json";
+            //    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            //    context.Response.ContentType = "application/json";
 
-                var errorResponse = new
-                {
-                    Message = "Validation failed",
-                    Errors = ex.Errors.Select(e => new { e.PropertyName, e.ErrorMessage })
-                };
+            //    var errorResponse = new
+            //    {
+            //        Message = "Validation failed",
+            //        Errors = ex.Errors.Select(e => new { e.PropertyName, e.ErrorMessage })
+            //    };
 
-                await context.Response.WriteAsJsonAsync(errorResponse);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Unhandled exception");
+            //    await context.Response.WriteAsJsonAsync(errorResponse);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "Unhandled exception");
 
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                context.Response.ContentType = "application/json";
+            //    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //    context.Response.ContentType = "application/json";
 
-                var errorResponse = new
-                {
-                    Message = "Internal Server Error",
-                    Detail = ex.Message
-                };
+            //    var errorResponse = new
+            //    {
+            //        Message = "Internal Server Error",
+            //        Detail = ex.Message
+            //    };
 
-                await context.Response.WriteAsJsonAsync(errorResponse);
-            }
+            //    await context.Response.WriteAsJsonAsync(errorResponse);
+            //}
         }
     }
 }

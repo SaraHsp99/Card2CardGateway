@@ -8,6 +8,7 @@ using Card2CardGateway.Infrastructure.Persistence.Repositories;
 using Card2CardGateway.Infrastructure.Persistence;
 using FluentValidation;
 using Card2CardGateway.Infrastructure.Middleware;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,13 +19,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 builder.Services.Configure<TransferOptions>(
     builder.Configuration.GetSection("TransferOptions"));
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseInMemoryDatabase("Card2CardDb"));
+
 builder.Services.AddTransient<IValidator<TransferRequestDto>, TransferRequestValidator>();
 
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<TransactionService>();
+
 
 
 
