@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Card2CardGateway.Domain\Card2CardGateway.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Transfer\Specifications\" />
+  </ItemGroup>
+
 </Project>
