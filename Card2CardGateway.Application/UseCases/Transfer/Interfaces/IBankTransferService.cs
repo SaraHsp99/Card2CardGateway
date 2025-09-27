@@ -12,7 +12,7 @@ namespace Card2CardGateway.Application.UseCases.Transfer.Interfaces
     {
         string GetBankName();
         Task<BankTransferResult> TransferAsync(TransferRequestDto request, CancellationToken ct = default);
-        Task<BankInquiryResult> InquiryAsync(string requestTraceId, CancellationToken ct = default);
+        Task<BankInquiryResult> InquiryAsync(Guid requestTraceId, CancellationToken ct = default);
     }
 
 }

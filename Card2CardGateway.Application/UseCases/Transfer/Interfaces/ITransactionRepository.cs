@@ -10,7 +10,7 @@ namespace Card2CardGateway.Application.UseCases.Transfer.Interfaces
 {
     public interface ITransactionRepository : IRepository<Transaction>
     {
-        Task<Transaction?> GetByRequestTraceIdAsync(string requestTraceId, CancellationToken ct = default);
+        Task<Transaction?> GetByRequestTraceIdAsync(Guid requestTraceId, CancellationToken ct = default);
         Task<IEnumerable<Transaction>> GetByStatusAsync(TransactionStatus status, CancellationToken ct = default);
         Task<IEnumerable<Transaction>> GetByDateRangeAsync(DateTime fromDate, DateTime toDate, CancellationToken ct = default);
     }

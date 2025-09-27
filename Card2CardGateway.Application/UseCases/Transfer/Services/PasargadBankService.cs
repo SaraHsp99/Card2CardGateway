@@ -35,7 +35,7 @@ namespace Card2CardGateway.Application.UseCases.Transfer.Services
             };
         }
 
-        public async Task<BankInquiryResult> InquiryAsync(string requestTraceId, CancellationToken ct = default)
+        public async Task<BankInquiryResult> InquiryAsync(Guid requestTraceId, CancellationToken ct = default)
         {
             await Task.Delay(300, ct);
 

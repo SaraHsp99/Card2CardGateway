@@ -21,7 +21,7 @@ namespace Card2CardGateway.Controllers
         }
 
         [HttpGet("inquiry/{requestTraceId}")]
-        public async Task<IActionResult> Inquiry(string requestTraceId)
+        public async Task<IActionResult> Inquiry(Guid requestTraceId)
         {
             var response = await _service.InquiryAsync(requestTraceId);
             return Ok(response);

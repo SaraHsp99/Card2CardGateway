@@ -15,7 +15,7 @@ namespace Card2CardGateway.Infrastructure.Persistence.Repositories
     {
         public TransactionRepository(AppDbContext context) : base(context) { }
 
-        public async Task<Transaction?> GetByRequestTraceIdAsync(string requestTraceId, CancellationToken ct = default)
+        public async Task<Transaction?> GetByRequestTraceIdAsync(Guid requestTraceId, CancellationToken ct = default)
         {
             return await _context.Transactions.FirstOrDefaultAsync(t => t.RequestTraceId == requestTraceId, ct);
         }

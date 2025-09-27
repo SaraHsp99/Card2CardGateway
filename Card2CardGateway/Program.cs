@@ -7,6 +7,7 @@ using Card2CardGateway.Application.UseCases.Transfer.Validators;
 using Card2CardGateway.Infrastructure.Persistence.Repositories;
 using Card2CardGateway.Infrastructure.Persistence;
 using FluentValidation;
+using Card2CardGateway.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

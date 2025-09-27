@@ -10,7 +10,7 @@ namespace Card2CardGateway.Application.UseCases.Transfer.DTOs
     public class BankTransferResult
     {
         public TransactionStatus Status { get; set; }
-        public string RequestTraceId { get; set; } = default!;
+        public Guid RequestTraceId { get; set; } = default!;
         public string? TransactionReferenceCode { get; set; }
         public string? ErrorCode { get; set; }
         public string? RawResponse { get; set; }
